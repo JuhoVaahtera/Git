@@ -2,20 +2,20 @@
 
 require_once 'datamodel.php';
 
-$participant1 = new Participant('John', 'Doe', 'john@example.com');
-$participant2 = new Participant('Jane', 'Smith', 'jane@example.com');
+$participant1 = new Participant('Tjimi', 'The God', 'tjimi@example.com');
+$participant2 = new Participant('Tjimitte', 'The Goddes', 'tjmi@example.com');
 
 $event1 = new Event(
-    'Sample Event 1',
-    'This is a sample event description.',
+    'Fortinite',
+    'Fornite battlepass tournament',
     '123 Main Street',
     new DateTime('2023-08-23 10:00:00'),
     new DateTime('2023-08-23 15:00:00')
 );
 
 $event2 = new Event(
-    'Sample Event 2',
-    'Another sample event description.',
+    'Music festivale',
+    'Another fucking Ed Sheeran consert',
     '456 Elm Avenue',
     new DateTime('2023-08-24 12:00:00'),
     new DateTime('2023-08-24 18:00:00')
@@ -24,6 +24,7 @@ $event2 = new Event(
 $event1->addParticipant($participant1);
 $event1->addParticipant($participant2);
 $event2->addParticipant($participant1);
+$event2->addParticipant($participant2);
 
 ?>
 
