@@ -1,47 +1,62 @@
 <?php
-// Sisällytetään luokat tiedostosta datamodel.php
+
 require_once 'datamodel.php';
 
-// Luodaan osallistujaobjekti
-$participant1 = new Participant('Matti', 'Meikäläinen', 'matti@example.com');
+$participant1 = new Participant('John', 'Doe', 'john@example.com');
+$participant2 = new Participant('Jane', 'Smith', 'jane@example.com');
 
-// Luodaan tapahtumaobjekti ja lisätään osallistuja siihen
-$event1StartTime = new DateTime('2023-08-25 10:00:00');
-$event1EndTime = new DateTime('2023-08-25 15:00:00');
-$event1 = new Event('Tapahtuma 1', 'Tämä on ensimmäinen tapahtuma', 'Tapahtumakatu 123', $event1StartTime, $event1EndTime);
+$event1 = new Event(
+    'Sample Event 1',
+    'This is a sample event description.',
+    '123 Main Street',
+    new DateTime('2023-08-23 10:00:00'),
+    new DateTime('2023-08-23 15:00:00')
+);
+
+$event2 = new Event(
+    'Sample Event 2',
+    'Another sample event description.',
+    '456 Elm Avenue',
+    new DateTime('2023-08-24 12:00:00'),
+    new DateTime('2023-08-24 18:00:00')
+);
+
 $event1->addParticipant($participant1);
+$event1->addParticipant($participant2);
+$event2->addParticipant($participant1);
 
-// Luodaan toinen tapahtumaobjekti ilman osallistujia
-$event2StartTime = new DateTime('2023-09-01 14:00:00');
-$event2EndTime = new DateTime('2023-09-01 18:00:00');
-$event2 = new Event('Tapahtuma 2', 'Tämä on toinen tapahtuma', 'Toinenkatu 456', $event2StartTime, $event2EndTime);
+?>
 
-// HTML-sivun luonti
-$html = '<html>
+<!DOCTYPE html>
+<html>
 <head>
-    <title>Testisivu</title>
+    <title>Event Information</title>
 </head>
 <body>
-    <h1>Tapahtumat ja osallistujat</h1>
-    <h2>Tapahtuma 1</h2>
-    <p><strong>Otsikko:</strong> ' . $event1->getTitle() . '</p>
-    <p><strong>Kuvaus:</strong> ' . $event1->getDescription() . '</p>
-    <p><strong>Osoite:</strong> ' . $event1->getAddress() . '</p>
-    <p><strong>Aika:</strong> ' . $event1->getStartTime()->format('Y-m-d H:i') . ' - ' . $event1->getEndTime()->format('Y-m-d H:i') . '</p>
-    <h3>Osallistujat:</h3>
-    <ul>';
-foreach ($event1->getParticipants() as $participant) {s
-    $html .= '<li>' . $participant->getFirstName() . ' ' . $participant->getLastName() . ' (' . $participant->getEmail() . ')</li>';
-}
-$html .= '</ul>
-    <h2>Tapahtuma 2</h2>
-    <p><strong>Otsikko:</strong> ' . $event2->getTitle() . '</p>
-    <p><strong>Kuvaus:</strong> ' . $event2->getDescription() . '</p>
-    <p><strong>Osoite:</strong> ' . $event2->getAddress() . '</p>
-    <p><strong>Aika:</strong> ' . $event2->getStartTime()->format('Y-m-d H:i') . ' - ' . $event2->getEndTime()->format('Y-m-d H:i') . '</p>
-</body>
-</html>';
+    <h1><?php echo $event1->getTitle(); ?></h1>
+    <p><strong>Description:</strong> <?php echo $event1->getDescription(); ?></p>
+    <p><strong>Address:</strong> <?php echo $event1->getAddress(); ?></p>
+    <p><strong>Start Time:</strong> <?php echo $event1->getStartTime()->format('Y-m-d H:i:s'); ?></p>
+    <p><strong>End Time:</strong> <?php echo $event1->getEndTime()->format('Y-m-d H:i:s'); ?></p>
+    <h2>Participants:</h2>
+    <ul>
+        <?php foreach ($event1->getParticipants() as $participant): ?>
+            <li><?php echo $participant->getFirstName() . ' ' . $participant->getLastName(); ?> (<?php echo $participant->getEmail(); ?>)</li>
+        <?php endforeach; ?>
+    </ul>
 
-// Tulostetaan HTML-sivu
-echo $html;
-?>
+    <hr>
+
+    <h1><?php echo $event2->getTitle(); ?></h1>
+    <p><strong>Description:</strong> <?php echo $event2->getDescription(); ?></p>
+    <p><strong>Address:</strong> <?php echo $event2->getAddress(); ?></p>
+    <p><strong>Start Time:</strong> <?php echo $event2->getStartTime()->format('Y-m-d H:i:s'); ?></p>
+    <p><strong>End Time:</strong> <?php echo $event2->getEndTime()->format('Y-m-d H:i:s'); ?></p>
+    <h2>Participants:</h2>
+    <ul>
+        <?php foreach ($event2->getParticipants() as $participant): ?>
+            <li><?php echo $participant->getFirstName() . ' ' . $participant->getLastName(); ?> (<?php echo $participant->getEmail(); ?>)</li>
+        <?php endforeach; ?>
+    </ul>
+</body>
+</html>
