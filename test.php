@@ -1,6 +1,7 @@
 <?php
 
 require_once 'datamodel.php';
+require_once 'data-access.php';
 
 $databaseConnection = new YourDatabaseConnection(); // Korvaa tämä tietokantayhteydelläsi
 $dataAccess = new DataAccess($databaseConnection);
