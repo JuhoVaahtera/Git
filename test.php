@@ -30,7 +30,7 @@ $html = '<html>
     <p><strong>Aika:</strong> ' . $event1->getStartTime()->format('Y-m-d H:i') . ' - ' . $event1->getEndTime()->format('Y-m-d H:i') . '</p>
     <h3>Osallistujat:</h3>
     <ul>';
-foreach ($event1->getParticipants() as $participant) {
+foreach ($event1->getParticipants() as $participant) {s
     $html .= '<li>' . $participant->getFirstName() . ' ' . $participant->getLastName() . ' (' . $participant->getEmail() . ')</li>';
 }
 $html .= '</ul>

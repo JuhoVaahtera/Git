@@ -102,5 +102,9 @@ class Event {
             array_splice($this->participants, $index, 1);
         }
     }
+
+    public function getParticipants() {
+        return $this->participants;
+    }
 }
 ?>
