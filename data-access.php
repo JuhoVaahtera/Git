@@ -1,3 +1,4 @@
+<?php
 class DataAccess {
     private $dbConnection;
 
@@ -69,3 +70,4 @@ class Event {
         }
     }
 }
+?>
