@@ -2,6 +2,9 @@
 
 require_once 'datamodel.php';
 
+$databaseConnection = new YourDatabaseConnection(); // Korvaa tämä tietokantayhteydelläsi
+$dataAccess = new DataAccess($databaseConnection);
+
 $participant1 = new Participant('Tjimi', 'The God', 'tjimi@example.com');
 $participant2 = new Participant('Tjimitte', 'The Goddes', 'tjmi@example.com');
 
@@ -21,10 +24,13 @@ $event2 = new Event(
     new DateTime('2023-08-24 18:00:00')
 );
 
-$event1->addParticipant($participant1);
-$event1->addParticipant($participant2);
-$event2->addParticipant($participant1);
-$event2->addParticipant($participant2);
+// Lisää osallistujat tietokantaan
+$dataAccess->addParticipant($participant1);
+$dataAccess->addParticipant($participant2);
+
+// Lisää tapahtumat tietokantaan
+$dataAccess->addEvent($event1);
+$dataAccess->addEvent($event2);
 
 ?>
 
