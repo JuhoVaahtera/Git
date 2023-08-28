@@ -1,4 +1,7 @@
 <?php
+
+namespace DataAccess;
+
 class DataAccess {
     private $dbConnection;
 
