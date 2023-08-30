@@ -1,6 +1,6 @@
 <?php
 
-require_once 'datamodel.php';
+require_once 'data-access.php';
 
 $participant1 = new Participant('Tjimi', 'The God', 'tjimi@example.com');
 $participant2 = new Participant('Tjimitte', 'The Goddes', 'tjmi@example.com');
