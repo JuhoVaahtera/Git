@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tapahtuman Lisäys ja Osallistujien Muokkaus</title>
+</head>
+<body>
+    <h1>Lisää Uusi Tapahtuma</h1>
+    <form action="add_event.php" method="post">
+        <label for="title">Tapahtuman nimi:</label>
+        <input type="text" name="title" required><br><br>
+        
+        <label for="description">Tapahtuman kuvaus:</label>
+        <textarea name="description" rows="4" cols="50" required></textarea><br><br>
+        
+        <label for="address">Tapahtuman osoite:</label>
+        <input type="text" name="address" required><br><br>
+        
+        <label for="startTime">Tapahtuman alkamisaika:</label>
+        <input type="datetime-local" name="startTime" required><br><br>
+        
+        <label for="endTime">Tapahtuman päättymisaika:</label>
+        <input type="datetime-local" name="endTime" required><br><br>
+        
+        <h2>Lisää Osallistujia</h2>
+        <div id="participants">
+            <!-- Osallistujien lisäyskentät generoidaan dynaamisesti JavaScriptillä tarvittaessa -->
+        </div>
+        <button type="button" id="addParticipant">Lisää Osallistuja</button><br><br>
+        
+        <input type="submit" name="submit" value="Lisää Tapahtuma">
+    </form>
+
+    <script>
+        // JavaScript-koodi lisää osallistujien lisäyskenttiä
+        var participantCount = 1;
+        var addParticipantButton = document.getElementById("addParticipant");
+        var participantsDiv = document.getElementById("participants");
+
+        addParticipantButton.addEventListener("click", function() {
+            var participantDiv = document.createElement("div");
+            participantDiv.innerHTML = '<label for="participant' + participantCount + '">Osallistuja ' + participantCount + ':</label>' +
+                                        '<input type="text" name="participant' + participantCount + '" required><br><br>';
+            participantsDiv.appendChild(participantDiv);
+            participantCount++;
+        });
+    </script>
+</body>
+</html>
