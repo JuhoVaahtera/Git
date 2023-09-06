@@ -1,0 +1,20 @@
+<?php
+require_once 'data-access.php';
+require_once 'participant.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $firstName = $_POST['first_name'];
+    $lastName = $_POST['last_name'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+
+    // Create a Participant object and add it to the database
+    $participant = new Participant(null, $firstName, $lastName, $email, $password);
+    $participant->setPassword($password);
+    $dataAccess->addParticipant($participant);
+
+    // Redirect to login page or any other page as needed
+    header('Location: index.php');
+    exit();
+}
+?>
